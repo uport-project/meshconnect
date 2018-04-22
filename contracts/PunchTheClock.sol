@@ -9,8 +9,8 @@ contract PunchTheClock {
     uint public timeMin;
     uint public timeMax;
 
-    function PunchTheClock(string _name, uint _timeMin, uint _timeMax) public {
-        admin = msg.sender;
+    function PunchTheClock(address _admin, string _name, uint _timeMin, uint _timeMax) public {
+        admin = _admin;
         name = _name;
         arrivalsCount = 0;
         departuresCount = 0;
@@ -81,12 +81,12 @@ contract PunchTheClock {
         _;
     }
 
-    modifier isComplete() {
+    modifier isTimeMinimum() {
         require(now >= entityList[msg.sender].timeArrived + timeMin); 
         _;
     }
 
-    modifier isReasonable() {
+    modifier isTimeMaximum() {
         require(now <= entityList[msg.sender].timeArrived + timeMax); 
         _;
     }
@@ -110,6 +110,9 @@ contract PunchTheClock {
     function adminNameEntity(address _address, string _name) public isAdmin {
         entityList[_address].name = _name;
     }
+    function adminTransferOwnership(address _address) public isAdmin {
+        admin = _address;
+    }
 
     /**
      * Entity Privileges
@@ -127,7 +130,7 @@ contract PunchTheClock {
         arrivalsCount++;
     }
 
-    function depart() public isApproved isComplete isReasonable {
+    function depart() public isApproved isTimeMinimum isTimeMaximum {
         departList[departuresCount].eid = msg.sender;
         departList[departuresCount].time = now;
         entityList[msg.sender].isActive = false;

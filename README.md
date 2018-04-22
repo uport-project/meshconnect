@@ -98,12 +98,11 @@ function register() public {
 The smart contract `admin` is primarily responsible for approving event registrants.
 
 Bounty Candidates:
+- [x] Intermediate Smart Contract - Add Smart Contract function call to transfer `admin` privileges.
+
+- [x] Intermediate Smart Contract - Change Smart Contract initialization function to include an `admin` parameter so the default admin can be set on smart contract initialize that is NOT the creator.
 
 - [ ] Intermediate Javascript - Create Administrator React Components to Approve `entities` using MetaMask Transaction Signing. To complete this task logic to dynamically include MetaMas as the Web3 provider needs to be added to the `ethers.js` Saga.
-
-- [ ] Intermediate Smart Contract - Add Smart Contract function call to transfer `admin` privileges.
-
-- [ ] Intermediate Smart Contract - Change Smart Contract initialization function to include an `admin` parameter so the default admin can be set on smart contract initialize that is NOT the creator.
 
 - [ ] Intermediate Javascript - Create Administrator React Components to Approve `entities` using uPort.
 

@@ -1,16 +1,16 @@
 {
   "app.css": "static/css/app.ac53e674.css",
   "app.css.map": "static/css/app.ac53e674.css.map",
-  "app.js": "static/js/app.08f74e3a.js",
-  "app.js.map": "static/js/app.08f74e3a.js.map",
-  "assets.js": "static/js/assets.58a002f5.js",
-  "assets.js.map": "static/js/assets.58a002f5.js.map",
-  "react.js": "static/js/react.7b6569f5.js",
-  "react.js.map": "static/js/react.7b6569f5.js.map",
+  "app.js": "static/js/app.89e51aa8.js",
+  "app.js.map": "static/js/app.89e51aa8.js.map",
+  "assets.js": "static/js/assets.63727fb4.js",
+  "assets.js.map": "static/js/assets.63727fb4.js.map",
+  "react.js": "static/js/react.3769d1a2.js",
+  "react.js.map": "static/js/react.3769d1a2.js.map",
   "static/media/gitcoin.png": "static/media/gitcoin.96a42c8b.png",
   "static/media/logo.png": "static/media/logo.b135463b.png",
   "static/media/logoUport.png": "static/media/logoUport.d1ac25e7.png",
   "static/media/logoUportSmall.png": "static/media/logoUportSmall.d1ac25e7.png",
-  "vendor.js": "static/js/vendor.030d98a8.js",
-  "vendor.js.map": "static/js/vendor.030d98a8.js.map"
+  "vendor.js": "static/js/vendor.54c471e9.js",
+  "vendor.js.map": "static/js/vendor.54c471e9.js.map"
 }

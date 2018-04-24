@@ -1,6 +1,10 @@
-pragma solidity ^0.4.16;
+pragma solidity ^0.4.17;
+
+import "contracts/eip20/MintableToken.sol";
 
 contract PunchTheClock {
+
+    MintableToken public defaultToken;
 
     address public admin;
     string public name;
@@ -8,14 +12,19 @@ contract PunchTheClock {
     uint public departuresCount;
     uint public timeMin;
     uint public timeMax;
+    uint public defaultAmountTokens = 5;
 
-    function PunchTheClock(address _admin, string _name, uint _timeMin, uint _timeMax) public {
+    function PunchTheClock(address _admin, string _name, uint _timeMin, uint _timeMax, address tokenAddr) public {
+        
         admin = _admin;
         name = _name;
         arrivalsCount = 0;
         departuresCount = 0;
         timeMin = _timeMin;
         timeMax = _timeMax;
+
+        adminEditAddressToken(tokenAddr);
+
     }
 
     /**
@@ -91,6 +100,14 @@ contract PunchTheClock {
         _;
     }
 
+    modifier isTokenDefined {
+
+        require(defaultAmountTokens > 0);
+        require(address(defaultToken) != address(0));
+        _;
+
+    }
+
     function isRegistered(address _address) public view returns(bool isIndeed) {
         return entityList[_address].isRegistered;
     }
@@ -113,6 +130,16 @@ contract PunchTheClock {
     function adminTransferOwnership(address _address) public isAdmin {
         admin = _address;
     }
+    function adminEditAddressToken(address _rewardToken) public isAdmin {
+
+        defaultToken = MintableToken(_rewardToken);
+
+    }
+    function changeDefaultTokenAmount(uint256 _newAmount) public isAdmin {
+
+        defaultAmountTokens = _newAmount;
+
+    }
 
     /**
      * Entity Privileges
@@ -130,13 +157,17 @@ contract PunchTheClock {
         arrivalsCount++;
     }
 
-    function depart() public isApproved isTimeMinimum isTimeMaximum {
+    function depart() public isApproved isTimeMinimum isTimeMaximum isTokenDefined {
+        
         departList[departuresCount].eid = msg.sender;
         departList[departuresCount].time = now;
         entityList[msg.sender].isActive = false;
         entityList[msg.sender].departures++;
         entityList[msg.sender].timeDeparted = now;
         departuresCount++;
+
+        defaultToken.mint(msg.sender, defaultAmountTokens);
+
     }
 
     function register() public {

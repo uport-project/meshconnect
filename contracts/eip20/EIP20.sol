@@ -5,7 +5,7 @@ Implements EIP20 token standard: https://github.com/ethereum/EIPs/blob/master/EI
 
 pragma solidity ^0.4.18;
 
-import "./EIP20Interface.sol";
+import "contracts/eip20/EIP20Interface.sol";
 
 
 contract EIP20 is EIP20Interface {

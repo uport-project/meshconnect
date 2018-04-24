@@ -1,4 +1,4 @@
-import "./EIP20.sol";
+import "contracts/eip20/EIP20.sol";
 
 pragma solidity ^0.4.18;
 
